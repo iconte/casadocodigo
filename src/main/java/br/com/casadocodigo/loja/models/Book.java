@@ -1,10 +1,9 @@
 package br.com.casadocodigo.loja.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by icc on 19/11/2016.
@@ -17,6 +16,8 @@ public class Book {
     private String description;
     private int numberOfPages;
     private BigDecimal price;
+    @ManyToMany
+    private List<Author> authors = new ArrayList<>();
 
     public String getTitle() {
         return title;
@@ -56,5 +57,9 @@ public class Book {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void add(Author author) {
+            this.authors.add(author);
     }
 }
